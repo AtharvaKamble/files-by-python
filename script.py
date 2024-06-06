@@ -22,7 +22,7 @@ def prepend_to_file(_dir):
 
         f_path = f'{_dir}/{file_name}'
         new_f_path = f'{_dir}/yeeh.md'
-        title = 'some title yeeter'
+        title = file_name.replace('.md', '')
 
         new_prepend_data = f'---\ntitle: {title}\ntags:\n\t- medium\n---'
         file_cache = ''
@@ -33,10 +33,11 @@ def prepend_to_file(_dir):
         with open(f_path, 'w', encoding='utf-8') as f:
             f.write(new_prepend_data + '\n' + file_cache)
         
-
         
 
 
-# clean_dir_name('../../Downloads/lc/Leetcode w me')
-prepend_to_file('.')
+dir_you_want_to_clean = ''
+
+# clean_dir_name(dir_you_want_to_clean)
+prepend_to_file(dir_you_want_to_clean)
 
