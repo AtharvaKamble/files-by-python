@@ -58,6 +58,29 @@ def remove_prepend_data(_dir):
             f.write(file_cache)
         
 
+def remove_markdown_title(_dir):
+    names = os.listdir(_dir)
+
+    for file_name in names:
+        if '.md' not in file_name: continue
+
+        f_path = f'{_dir}/{file_name}'
+
+        title = file_name.split(' ')
+        to_replace = f"# {title[0]}. {' '.join(title[1:]).replace('.md', '')}\n"
+
+        file_cache = ''
+
+        with open(f_path, encoding='utf-8') as f:
+             file_cache += f.read()
+
+        if to_replace in file_cache:
+            file_cache = file_cache.replace(to_replace, '')
+
+            with open(f_path, 'w', encoding='utf-8') as f:
+                f.write(file_cache)
+
+
 
 dir_you_want_to_clean = ''
 
@@ -71,3 +94,6 @@ dir_you_want_to_clean = ''
 
 # remove the prepended data that was attached by the above function
 # remove_prepend_data(dir_you_want_to_clean)
+
+# remove the markdown title that matches perfectly with the title of the file
+# remove_markdown_title(dir_you_want_to_clean)
